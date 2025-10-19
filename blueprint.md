@@ -1,30 +1,50 @@
-# Cultural Fest Scoreboard
+# PYPA Talent Test Application
 
-This is a web application for a cultural event. It allows judges to enter marks for participants, and it displays a real-time scoreboard with the results.
+This is a web application for the PYPA Talent Test event. It allows judges to enter marks for participants, and it displays a real-time scoreboard with the results.
 
 ## Features:
 
-*   **Judges' Mark Entry:** A page for judges to enter the chest number and marks for each participant.
-*   **Real-time Scoreboard:** A page that displays the total marks for each participant, updated in real-time.
-*   **Supabase Integration:** The application is integrated with Supabase to store and retrieve the data.
-*   **Navigation:** A navigation bar to switch between the judges' page and the scoreboard.
-*   **Modern UI:** A visually appealing and user-friendly interface built with Tailwind CSS.
+*   **Judges' Login:** A secure login page for judges to authenticate using email and password.
+*   **Marks Entry:** A page for judges to enter the chest number, category, and marks for each participant.
+*   **Admin Dashboard:** A page to view all marks, search/filter, and export data.
+*   **Real-time Updates:** The Admin Dashboard will update in real-time using Supabase subscriptions.
+*   **404 Page:** A custom "Page Not Found" screen.
 
 ## Tech Stack:
 
 *   **Framework:** Next.js with App Router
 *   **Database:** Supabase
 *   **Styling:** Tailwind CSS
+*   **Animation:** Framer Motion
+*   **Icons:** Lucide React
 
-## Current State & Recent Changes:
+## Design:
 
-The application is now fully functional. The following fixes and improvements have been implemented:
+*   **Theme:** Modern, minimalist, and responsive.
+*   **Color Palette:** Neutral colors (slate, indigo, gray, or blue tones).
+*   **UI Elements:** Rounded corners, soft shadows, and ample white space.
+*   **Transitions:** Smooth transitions and light hover effects.
 
-*   **Resolved "Internal Server Error":** The application was failing to build, resulting in an "Internal Server Error". This was resolved by building the application for the first time.
-*   **Resolved Critical 404 Error:** Fixed a fatal parsing error in the `app/page.tsx` file that was preventing the application from building and was causing a 404 error on all pages.
-*   **Enhanced Home Page:** The home page has been redesigned to provide a clear and welcoming entry point for users, with easy navigation to the Judges and Scoreboard pages.
-*   **Improved Code Quality & Stability:**
-    *   Added the `lint` script to `package.json` to enable code quality checks.
-    *   Resolved all linting errors, including unused variables and the use of `any` types, improving the overall stability and maintainability of the codebase.
-*   **Real-time Scoreboard Implemented:** The scoreboard now subscribes to database changes and updates in real-time as judges submit new scores.
-*   **Improved Error Handling:** Implemented more robust error handling in both the judges' submission form and the scoreboard data fetching.
+## Project Plan:
+
+1.  **Project Setup:**
+    *   Create a new Next.js application.
+    *   Install necessary dependencies: `@supabase/supabase-js`, `framer-motion`, `lucide-react`.
+    *   Configure Tailwind CSS.
+2.  **Supabase Setup:**
+    *   Create a new Supabase project.
+    *   Define the database schema with `judges`, `participants`, and `marks` tables.
+    *   Set up authentication for judges.
+    *   Enable Row Level Security (RLS) on the tables.
+    *   **Created `lib/supabaseClient.ts` to initialize the Supabase client. You need to add your Supabase URL and anon key to this file.**
+3.  **Application Development:**
+    *   Create the Login Page.
+    *   Create the Marks Entry Page.
+    *   Implement the Admin Dashboard.
+    *   Create a custom 404 Page.
+4.  **Styling:**
+    *   Apply a modern, minimalist design using Tailwind CSS.
+    *   Incorporate smooth transitions and hover effects with Framer Motion.
+    *   Use `lucide-react` for icons.
+5.  **Deployment:**
+    *   Deploy the application to Firebase Hosting or Vercel.

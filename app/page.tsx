@@ -1,25 +1,20 @@
+import Link from 'next/link'
 
-import Link from 'next/link';
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-8">
-      <div className="text-center">
-        <h1 className="text-5xl font-extrabold text-indigo-400 mb-4">
-          Cultural Fest Scoreboard
-        </h1>
-        <p className="text-lg text-gray-400 mb-8">
-          Welcome! Use the navigation to enter scores or view the live scoreboard.
-        </p>
-        <div className="flex justify-center gap-4">
-          <Link href="/judges" className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-lg font-semibold transition-colors">
-              Go to Judges
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50">
+      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+        <h1 className="mb-4 text-center text-3xl font-bold text-gray-900">PYPA Talent Test</h1>
+        <p className="mb-8 text-center text-gray-600">Welcome to the PYPA Talent Test application. Please select your role to continue.</p>
+        <div className="flex justify-center space-x-4">
+          <Link href="/judges/login" className="rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
+            Judge Login
           </Link>
-          <Link href="/scoreboard" className="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-lg font-semibold transition-colors">
-              View Scoreboard
+          <Link href="/admin" className="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300">
+            Admin Dashboard
           </Link>
         </div>
       </div>
-    </div>
-  );
+    </main>
+  )
 }
