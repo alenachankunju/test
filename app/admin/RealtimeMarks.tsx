@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { supabase } from '@/lib/supabaseClient'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table'
 
 interface Mark {
@@ -14,6 +14,7 @@ interface Mark {
 
 export default function RealtimeMarks({ serverMarks }: { serverMarks: Mark[] }) {
   const [marks, setMarks] = useState(serverMarks)
+  const supabase = createClientComponentClient()
 
   useEffect(() => {
     setMarks(serverMarks)
@@ -46,7 +47,7 @@ export default function RealtimeMarks({ serverMarks }: { serverMarks: Mark[] }) 
     return () => {
       supabase.removeChannel(channel)
     }
-  }, [])
+  }, [supabase])
 
   return (
     <Table>
