@@ -4,7 +4,11 @@ import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-export async function login(prevState: any, formData: FormData) {
+interface AuthState {
+  message: string;
+}
+
+export async function login(prevState: AuthState, formData: FormData): Promise<AuthState> {
   const email = String(formData.get('email'))
   const password = String(formData.get('password'))
 
@@ -21,9 +25,14 @@ export async function login(prevState: any, formData: FormData) {
         message: `Login failed: ${error.message}`,
       }
     }
-  } catch (error: any) {
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        message: `Login failed: ${error.message}`,
+      }
+    }
     return {
-      message: `Login failed: ${error.message}`,
+      message: 'An unknown error occurred.'
     }
   }
 

@@ -4,7 +4,11 @@ import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 
-export async function addMark(prevState: any, formData: FormData) {
+interface MarkState {
+  message: string;
+}
+
+export async function addMark(prevState: MarkState, formData: FormData): Promise<MarkState> {
   const chestNumber = String(formData.get('chest-number'))
   const category = String(formData.get('category'))
   const marks = Number(formData.get('marks'))
@@ -33,9 +37,14 @@ export async function addMark(prevState: any, formData: FormData) {
     revalidatePath('/admin')
     return { message: 'Marks submitted successfully!' }
 
-  } catch (error: any) {
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        message: `Failed to submit marks: ${error.message}`,
+      }
+    }
     return {
-      message: `Failed to submit marks: ${error.message}`,
+      message: 'An unknown error occurred.'
     }
   }
 }

@@ -29,7 +29,7 @@ export default function MarksEntryPage() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
         <h1 className="mb-4 text-center text-3xl font-bold text-gray-900">Enter Marks</h1>
-        <p className="mb-8 text-center text-gray-600">Enter the participant's details and marks</p>
+        <p className="mb-8 text-center text-gray-600">Enter the participant&apos;s details and marks</p>
         <form action={formAction}>
           <div className="mb-4">
             <label className="mb-2 block text-sm font-medium text-gray-700" htmlFor="chest-number">

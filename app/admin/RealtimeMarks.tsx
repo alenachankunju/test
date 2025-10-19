@@ -4,7 +4,15 @@ import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table'
 
-export default function RealtimeMarks({ serverMarks }: { serverMarks: any[] }) {
+interface Mark {
+  id: number
+  chest_number: string
+  category: string
+  marks: number
+  judge_id: string
+}
+
+export default function RealtimeMarks({ serverMarks }: { serverMarks: Mark[] }) {
   const [marks, setMarks] = useState(serverMarks)
 
   useEffect(() => {
@@ -19,16 +27,16 @@ export default function RealtimeMarks({ serverMarks }: { serverMarks: any[] }) {
         { event: '*', schema: 'public', table: 'marks' },
         (payload) => {
           if (payload.eventType === 'INSERT') {
-            setMarks((prevMarks) => [...prevMarks, payload.new])
+            setMarks((prevMarks) => [...prevMarks, payload.new as Mark])
           } else if (payload.eventType === 'UPDATE') {
             setMarks((prevMarks) =>
               prevMarks.map((mark) =>
-                mark.id === payload.new.id ? payload.new : mark
+                mark.id === (payload.new as Mark).id ? (payload.new as Mark) : mark
               )
             )
           } else if (payload.eventType === 'DELETE') {
             setMarks((prevMarks) =>
-              prevMarks.filter((mark) => mark.id !== payload.old.id)
+              prevMarks.filter((mark) => mark.id !== (payload.old as { id: number }).id)
             )
           }
         }
